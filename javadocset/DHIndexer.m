@@ -60,55 +60,55 @@
         NSString *name = [anchor innerText];
         NSString *dtClassName = [parent className];
         dtClassName = (dtClassName) ? dtClassName : @"";
-        if([text rangeOfString:@"Class in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- class" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"class"])
+        if([text rangeOfString:@"Class in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- class" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"class"] || [text rangeOfString:@"のクラス"].location != NSNotFound || [text rangeOfString:@"内のクラス"].location != NSNotFound || [text rangeOfString:@" のクラス"].location != NSNotFound || [text rangeOfString:@" 内のクラス"].location != NSNotFound)
         {
             type = @"Class";
         }
-        else if([text rangeOfString:@"Static method in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"method"])
+        else if([text rangeOfString:@"Static method in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"method"] || [text rangeOfString:@"のstaticメソッド"].location != NSNotFound || [text rangeOfString:@"内のstaticメソッド"].location != NSNotFound || [text rangeOfString:@" の static メソッド"].location != NSNotFound || [text rangeOfString:@" 内の static メソッド"].location != NSNotFound)
         {
             type = @"Method";
         }
-        else if([text rangeOfString:@"Static variable in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"field"] || [text rangeOfString:@"Field in" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        else if([text rangeOfString:@"Static variable in" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"field"] || [text rangeOfString:@"Field in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"のstatic変数"].location != NSNotFound || [text rangeOfString:@"内のstatic変数"].location != NSNotFound || [text rangeOfString:@" の static 変数"].location != NSNotFound || [text rangeOfString:@" 内の static 変数"].location != NSNotFound)
         {
             type = @"Field";
         }
-        else if([text rangeOfString:@"Constructor" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"constructor"])
+        else if([text rangeOfString:@"Constructor" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"constructor"] || [text rangeOfString:@"のコンストラクタ"].location != NSNotFound || [text rangeOfString:@" のコンストラクタ"].location != NSNotFound)
         {
             type = @"Constructor";
         }
-        else if([text rangeOfString:@"Method in" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        else if([text rangeOfString:@"Method in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"のメソッド"].location != NSNotFound || [text rangeOfString:@"内のメソッド"].location != NSNotFound || [text rangeOfString:@" のメソッド"].location != NSNotFound || [text rangeOfString:@" 内のメソッド"].location != NSNotFound)
         {
             type = @"Method";
         }
-        else if([text rangeOfString:@"Variable in" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        else if([text rangeOfString:@"Variable in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"の変数"].location != NSNotFound || [text rangeOfString:@"内の変数"].location != NSNotFound || [text rangeOfString:@" の変数"].location != NSNotFound || [text rangeOfString:@" 内の変数"].location != NSNotFound)
         {
             type = @"Field";
         }
-        else if([text rangeOfString:@"Interface in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- interface" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"interface"])
+        else if([text rangeOfString:@"Interface in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- interface" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"interface"] || [text rangeOfString:@"のインタフェース"].location != NSNotFound || [text rangeOfString:@"内のインタフェース"].location != NSNotFound || [text rangeOfString:@" のインタフェース"].location != NSNotFound || [text rangeOfString:@" 内のインタフェース"].location != NSNotFound)
         {
             type = @"Interface";
         }
-        else if([text rangeOfString:@"Exception in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- exception" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"exception"])
+        else if([text rangeOfString:@"Exception in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- exception" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"exception"] || [text rangeOfString:@"の例外"].location != NSNotFound || [text rangeOfString:@"内の例外"].location != NSNotFound || [text rangeOfString:@" の例外"].location != NSNotFound || [text rangeOfString:@" 内の例外"].location != NSNotFound)
         {
             type = @"Exception";
         }
-        else if([text rangeOfString:@"Error in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- error" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"error"])
+        else if([text rangeOfString:@"Error in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- error" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"error"] || [text rangeOfString:@"内のエラー"].location != NSNotFound || [text rangeOfString:@" 内のエラー"].location != NSNotFound)
         {
             type = @"Error";
         }
-        else if([text rangeOfString:@"Enum in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- enum" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"enum"])
+        else if([text rangeOfString:@"Enum in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"- enum" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"enum"] || [text rangeOfString:@"の列挙"].location != NSNotFound || [text rangeOfString:@"内の列挙"].location != NSNotFound || [text rangeOfString:@" の列挙"].location != NSNotFound || [text rangeOfString:@" 内の列挙"].location != NSNotFound)
         {
             type = @"Enum";
         }
-        else if([text rangeOfString:@"Trait in" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        else if([text rangeOfString:@"Trait in" options:NSCaseInsensitiveSearch].location != NSNotFound || [text rangeOfString:@"のトレイト"].location != NSNotFound || [text rangeOfString:@"内のトレイト"].location != NSNotFound || [text rangeOfString:@" のトレイト"].location != NSNotFound || [text rangeOfString:@" 内のトレイト"].location != NSNotFound)
         {
             type = @"Trait";
         }
-        else if([text rangeOfString:@"Annotation Type" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"annotation"])
+        else if([text rangeOfString:@"Annotation Type" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"annotation"] || [text rangeOfString:@"の注釈型"].location != NSNotFound || [text rangeOfString:@"内の注釈型"].location != NSNotFound || [text rangeOfString:@" の注釈型"].location != NSNotFound || [text rangeOfString:@" 内の注釈型"].location != NSNotFound)
         {
             type = @"Notation";
         }
-        else if([text rangeOfString:@"package" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"package"])
+        else if([text rangeOfString:@"package" options:NSCaseInsensitiveSearch].location != NSNotFound || [dtClassName hasSuffix:@"package"] || [text rangeOfString:@"パッケージ"].location != NSNotFound)
         {
             type = @"Package";
         }
